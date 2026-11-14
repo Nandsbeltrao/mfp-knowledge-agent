@@ -218,3 +218,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Arquivos locais de teste
+data/sample/*.pdf
+data/sample/*.docx
