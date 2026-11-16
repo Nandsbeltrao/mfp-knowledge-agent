@@ -9,13 +9,65 @@ from src.text_splitter import create_document_chunks
 from src.vector_store import index_chunks, search_chunks
 
 
+# =========================================================
+# FUNÇÕES AUXILIARES
+# =========================================================
+
+
+def load_css(css_path: str) -> None:
+    """Carrega um arquivo CSS externo na aplicação."""
+
+    css_file = Path(css_path)
+
+    if not css_file.exists():
+        st.warning(
+            f"O arquivo de estilo não foi encontrado: {css_path}"
+        )
+        return
+
+    css_content = css_file.read_text(encoding="utf-8")
+
+    st.markdown(
+        f"<style>{css_content}</style>",
+        unsafe_allow_html=True,
+    )
+
+
+def show_api_key_warning() -> None:
+    """Exibe o aviso personalizado para configuração da API."""
+
+    st.markdown(
+        """
+        <div class="mfp-api-warning">
+            🦜 Informe uma Cohere API Key na barra lateral
+            para utilizar a aplicação.
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+# =========================================================
+# CONFIGURAÇÃO DA PÁGINA
+# =========================================================
+
+
 st.set_page_config(
     page_title="MFP Knowledge Agent",
-    page_icon="💜",
+    page_icon="🦜",
     layout="wide",
+    initial_sidebar_state="expanded",
 )
 
-st.title("💜 MFP Knowledge Agent")
+load_css("assets/styles.css")
+
+
+# =========================================================
+# CABEÇALHO
+# =========================================================
+
+
+st.title("🦜 MFP Knowledge Agent")
 
 st.write(
     "Agente inteligente para consulta do conhecimento institucional "
@@ -28,30 +80,43 @@ st.caption(
 )
 
 
-# Configuração da IA
-st.sidebar.header("Configuração da IA")
+# =========================================================
+# CONFIGURAÇÃO DA IA
+# =========================================================
+
+
+st.sidebar.header("🦜 Configuração da IA")
+
+st.sidebar.caption(
+    "Informe uma Trial API Key da Cohere para utilizar o agente."
+)
 
 cohere_api_key = st.sidebar.text_input(
     "Cohere API Key",
     type="password",
     help=(
-        "Use uma Trial API Key da Cohere. A chave permanece somente "
-        "durante a sessão atual e não é armazenada pela aplicação."
+        "A chave permanece somente durante a sessão atual "
+        "e não é armazenada pela aplicação."
     ),
 )
 
 if cohere_api_key:
     os.environ["COHERE_API_KEY"] = cohere_api_key.strip()
-    st.sidebar.success("Chave configurada para esta sessão.")
-else:
-    st.warning(
-        "Informe uma Cohere API Key na barra lateral "
-        "para utilizar a aplicação."
+
+    st.sidebar.success(
+        "Chave configurada para esta sessão."
     )
+
+else:
+    show_api_key_warning()
     st.stop()
 
 
-# Estado da aplicação
+# =========================================================
+# ESTADO DA APLICAÇÃO
+# =========================================================
+
+
 if "document_name" not in st.session_state:
     st.session_state.document_name = None
 
@@ -62,7 +127,11 @@ if "total_chunks" not in st.session_state:
     st.session_state.total_chunks = 0
 
 
-# Escolha e processamento do documento
+# =========================================================
+# ESCOLHA DO DOCUMENTO
+# =========================================================
+
+
 st.subheader("1. Escolha um documento")
 
 input_mode = st.radio(
@@ -96,7 +165,7 @@ if input_mode == "Usar arquivo de teste do projeto":
 
         st.info(
             "Adicione um arquivo PDF ou DOCX fictício à pasta "
-            "data/sample para usar este modo."
+            "data/sample para utilizar este modo."
         )
 
     else:
@@ -110,10 +179,9 @@ if input_mode == "Usar arquivo de teste do projeto":
         document_name = selected_file.name
 
         st.caption(
-            "Esse arquivo já está dentro do ambiente do projeto, "
-            "portanto não depende do upload do navegador."
+            "Este arquivo já está dentro do ambiente do projeto "
+            "e não depende do upload do navegador."
         )
-
 
 else:
     uploaded_file = st.file_uploader(
@@ -124,6 +192,11 @@ else:
     if uploaded_file is not None:
         document_to_process = uploaded_file
         document_name = uploaded_file.name
+
+
+# =========================================================
+# PROCESSAMENTO DO DOCUMENTO
+# =========================================================
 
 
 if document_to_process is not None:
@@ -182,7 +255,11 @@ if document_to_process is not None:
             )
 
 
-# Informações do documento ativo
+# =========================================================
+# CONSULTA AO DOCUMENTO
+# =========================================================
+
+
 if st.session_state.document_processed:
     column_1, column_2 = st.columns(2)
 
@@ -237,6 +314,7 @@ if st.session_state.document_processed:
 
             if answer.startswith(insufficient_answer):
                 st.warning(answer)
+
             else:
                 st.success(answer)
 
