@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 import streamlit as st
 
@@ -27,16 +28,15 @@ st.caption(
 )
 
 
-# Configuração da API
+# Configuração da IA
 st.sidebar.header("Configuração da IA")
 
 cohere_api_key = st.sidebar.text_input(
     "Cohere API Key",
     type="password",
     help=(
-        "Use uma Trial API Key da Cohere. "
-        "A chave permanece apenas durante a sessão atual "
-        "e não é armazenada pela aplicação."
+        "Use uma Trial API Key da Cohere. A chave permanece somente "
+        "durante a sessão atual e não é armazenada pela aplicação."
     ),
 )
 
@@ -62,15 +62,71 @@ if "total_chunks" not in st.session_state:
     st.session_state.total_chunks = 0
 
 
-# Upload e processamento
-st.subheader("1. Envie um documento")
+# Escolha e processamento do documento
+st.subheader("1. Escolha um documento")
 
-uploaded_file = st.file_uploader(
-    "Selecione um arquivo PDF ou DOCX",
-    type=["pdf", "docx"],
+input_mode = st.radio(
+    "Como deseja fornecer o documento?",
+    options=[
+        "Usar arquivo de teste do projeto",
+        "Enviar PDF ou DOCX",
+    ],
 )
 
-if uploaded_file is not None:
+document_to_process = None
+document_name = None
+
+
+if input_mode == "Usar arquivo de teste do projeto":
+    sample_directory = Path("data/sample")
+
+    sample_files = []
+
+    if sample_directory.exists():
+        sample_files = sorted(
+            list(sample_directory.glob("*.pdf"))
+            + list(sample_directory.glob("*.docx"))
+        )
+
+    if not sample_files:
+        st.warning(
+            "Nenhum arquivo de teste foi encontrado na pasta "
+            "data/sample."
+        )
+
+        st.info(
+            "Adicione um arquivo PDF ou DOCX fictício à pasta "
+            "data/sample para usar este modo."
+        )
+
+    else:
+        selected_file = st.selectbox(
+            "Selecione um arquivo de teste",
+            options=sample_files,
+            format_func=lambda file_path: file_path.name,
+        )
+
+        document_to_process = selected_file
+        document_name = selected_file.name
+
+        st.caption(
+            "Esse arquivo já está dentro do ambiente do projeto, "
+            "portanto não depende do upload do navegador."
+        )
+
+
+else:
+    uploaded_file = st.file_uploader(
+        "Selecione um arquivo PDF ou DOCX",
+        type=["pdf", "docx"],
+    )
+
+    if uploaded_file is not None:
+        document_to_process = uploaded_file
+        document_name = uploaded_file.name
+
+
+if document_to_process is not None:
     process_document = st.button(
         "Processar documento",
         type="primary",
@@ -81,28 +137,36 @@ if uploaded_file is not None:
             with st.spinner(
                 "Extraindo, dividindo e indexando o documento..."
             ):
-                extracted_sections = load_document(uploaded_file)
+                extracted_sections = load_document(
+                    document_to_process
+                )
 
                 if not extracted_sections:
                     st.warning(
-                        "O arquivo foi carregado, mas nenhum texto "
+                        "O documento foi identificado, mas nenhum texto "
                         "pôde ser extraído."
                     )
+
+                    st.session_state.document_processed = False
+
                 else:
                     chunks = create_document_chunks(
                         extracted_sections=extracted_sections,
-                        document_name=uploaded_file.name,
+                        document_name=document_name,
                     )
 
                     if not chunks:
                         st.warning(
-                            "Nenhum trecho válido foi criado "
-                            "a partir do documento."
+                            "O texto foi extraído, mas nenhum chunk "
+                            "válido foi criado."
                         )
+
+                        st.session_state.document_processed = False
+
                     else:
                         total_indexed = index_chunks(chunks)
 
-                        st.session_state.document_name = uploaded_file.name
+                        st.session_state.document_name = document_name
                         st.session_state.document_processed = True
                         st.session_state.total_chunks = total_indexed
 
@@ -111,12 +175,14 @@ if uploaded_file is not None:
                         )
 
         except Exception as error:
+            st.session_state.document_processed = False
+
             st.error(
                 f"Não foi possível processar o documento: {error}"
             )
 
 
-# Área de perguntas
+# Informações do documento ativo
 if st.session_state.document_processed:
     column_1, column_2 = st.columns(2)
 
@@ -180,6 +246,7 @@ if st.session_state.document_processed:
                 st.info(
                     "Nenhum trecho relevante foi encontrado."
                 )
+
             else:
                 for index, match in enumerate(
                     matches,
@@ -213,6 +280,6 @@ if st.session_state.document_processed:
 
 else:
     st.info(
-        "Envie e processe um documento para liberar "
+        "Selecione e processe um documento para liberar "
         "o campo de perguntas."
     )
