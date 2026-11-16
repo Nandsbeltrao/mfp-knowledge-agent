@@ -67,6 +67,7 @@ def index_chunks(chunks: list[dict]) -> int:
 def search_chunks(
     question: str,
     number_of_results: int = 4,
+    document_name: str | None = None,
 ) -> list[dict]:
     """Busca os chunks semanticamente mais próximos da pergunta."""
 
@@ -85,20 +86,30 @@ def search_chunks(
         input_type="search_query",
     )[0]
 
-    result = collection.query(
-        query_embeddings=[query_embedding],
-        n_results=min(
+    query_parameters = {
+        "query_embeddings": [query_embedding],
+        "n_results": min(
             number_of_results,
             collection.count(),
         ),
-        include=[
+        "include": [
             "documents",
             "metadatas",
             "distances",
         ],
-    )
+    }
+
+    if document_name:
+        query_parameters["where"] = {
+            "document": document_name,
+        }
+
+    result = collection.query(**query_parameters)
 
     matches = []
+
+    if not result["documents"] or not result["documents"][0]:
+        return matches
 
     for document, metadata, distance in zip(
         result["documents"][0],
