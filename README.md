@@ -12,19 +12,19 @@ O projeto utiliza **Retrieval-Augmented Generation (RAG)** para permitir pergunt
 
 ### Tela inicial
 
-assets/Images/01-home.png
+![Tela inicial do MFP Knowledge Agent](assets/Images/01-home.png)
 
 ### Documento processado
 
-assets/Images/02-document-processed.png
+![Documento processado no MFP Knowledge Agent](assets/Images/02-document-processed.png)
 
 ### Resposta fundamentada
 
-assets/Images/03-grounded-answer.png
+![Resposta fundamentada com fontes](assets/Images/03-grounded-answer.png)
 
 ### Tratamento de informação não encontrada
 
-assets/Images/04-insufficient-information.png
+![Resposta para informação não encontrada](assets/Images/04-insufficient-information.png)
 
 ## Aplicação publicada
 
