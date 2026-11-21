@@ -3,55 +3,69 @@
 :root {
     color-scheme: light !important;
 
-    --mfp-purple: #9B20C7;
-    --mfp-purple-hover: #7B159E;
-    --mfp-purple-dark: #541064;
+    --purple: #e500a4;
+    --purple-hover: #f20089;
+    --purple-dark: #862091;
 
-    --mfp-pink: #E85D88;
-    --mfp-pink-medium: #F29AB5;
-    --mfp-pink-light: #FCE7EF;
+    --pink: #e500a4;
+    --pink-medium: #f20089;
+    --pink-light: #FFF0FC;
 
-    --mfp-lilac-light: #FCF7FD;
-    --mfp-white: #FFFFFF;
-    --mfp-text: #40104D;
-    --mfp-muted: #806C84;
-    --mfp-border: #E7D5EB;
+    --lilac: #FFF0FC;
+    --white: #FFFFFF;
+
+    --text: #862091;
+    --muted: #866F8C;
+    --border: #E8D4ED;
 }
 
-/* Aplicação */
+/* =======================================================
+   ESTRUTURA GERAL
+   ======================================================= */
 
 html,
 body,
 .stApp,
 [data-testid="stAppViewContainer"],
 [data-testid="stMain"] {
-    background-color: var(--mfp-white) !important;
-    color: var(--mfp-text) !important;
     color-scheme: light !important;
+    background: var(--white) !important;
+    color: var(--text) !important;
 }
 
 .block-container {
-    max-width: 1050px;
+    max-width: 1080px;
     padding-top: 3rem;
     padding-bottom: 5rem;
 }
 
-/* Cabeçalho superior */
+/* =======================================================
+   CABEÇALHO SUPERIOR
+   ======================================================= */
 
 header[data-testid="stHeader"] {
-    background-color: rgba(255, 255, 255, 0.98) !important;
-    border-bottom: 1px solid var(--mfp-border) !important;
+    background: var(--white) !important;
+    border-bottom: 1px solid var(--border) !important;
 }
 
 [data-testid="stDecoration"] {
     background: linear-gradient(
         90deg,
-        var(--mfp-purple),
-        var(--mfp-pink)
+        var(--purple),
+        var(--pink)
     ) !important;
 }
 
-/* Tipografia */
+[data-testid="stToolbar"],
+[data-testid="stToolbar"] button,
+[data-testid="stHeaderActionElements"] button {
+    background: transparent !important;
+    color: var(--purple-dark) !important;
+}
+
+/* =======================================================
+   TIPOGRAFIA
+   ======================================================= */
 
 h1,
 h2,
@@ -59,12 +73,21 @@ h3,
 h1 span,
 h2 span,
 h3 span {
-    font-family: "Righteous", Helvetica, Arial, sans-serif !important;
-    color: var(--mfp-purple-dark) !important;
+    font-family: "Righteous", Arial, sans-serif !important;
+    color: var(--pink) !important;
 }
 
 h1 {
     font-size: 2.65rem !important;
+    line-height: 1.15 !important;
+}
+
+h2 {
+    font-size: 1.65rem !important;
+}
+
+h3 {
+    font-size: 1.25rem !important;
 }
 
 p,
@@ -73,232 +96,367 @@ span,
 input,
 textarea,
 button {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 p {
-    color: var(--mfp-text);
+    color: var(--text) !important;
 }
 
 [data-testid="stCaptionContainer"] p {
-    color: var(--mfp-muted) !important;
+    color: var(--muted) !important;
 }
 
-/* Barra lateral */
+/* =======================================================
+   BARRA LATERAL
+   ======================================================= */
 
 section[data-testid="stSidebar"],
 section[data-testid="stSidebar"] > div {
-    background-color: var(--mfp-pink-light) !important;
+    background: var(--pink-light) !important;
 }
 
 section[data-testid="stSidebar"] {
-    border-right: 1px solid var(--mfp-border) !important;
+    border-right: 1px solid var(--border) !important;
 }
 
 section[data-testid="stSidebar"] h1,
 section[data-testid="stSidebar"] h2,
 section[data-testid="stSidebar"] h3 {
-    color: var(--mfp-purple-dark) !important;
+    color: var(--purple-dark) !important;
 }
 
 section[data-testid="stSidebar"] p,
 section[data-testid="stSidebar"] label,
 section[data-testid="stSidebar"] span {
-    color: var(--mfp-text) !important;
+    color: var(--text) !important;
 }
 
-section[data-testid="stSidebar"] input {
-    background-color: var(--mfp-white) !important;
-    color: var(--mfp-text) !important;
-    border: 1px solid var(--mfp-pink-medium) !important;
-    border-radius: 12px !important;
-}
-
-/* Labels */
-
+section[data-testid="stSidebar"]
 [data-testid="stWidgetLabel"] p {
-    color: var(--mfp-purple-dark) !important;
+    color: var(--pink) !important;
     font-weight: 700 !important;
 }
 
-/* Rádio */
-
-div[role="radiogroup"] {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem 1.5rem;
-    padding: 1rem 1.1rem !important;
-
-    background-color: var(--mfp-lilac-light) !important;
-    border: 1px solid var(--mfp-border) !important;
-    border-radius: 16px !important;
+/* Campo da API Key */
+section[data-testid="stSidebar"]
+div[data-baseweb="input"] > div {
+    background: var(--white) !important;
+    border: 1px solid var(--pink-medium) !important;
+    border-radius: 12px !important;
 }
 
-div[role="radiogroup"] label,
-div[role="radiogroup"] p,
-div[role="radiogroup"] span {
-    color: var(--mfp-text) !important;
+section[data-testid="stSidebar"] input {
+    background: var(--white) !important;
+    color: var(--text) !important;
+    -webkit-text-fill-color: var(--text) !important;
 }
 
-div[role="radiogroup"] svg {
-    color: var(--mfp-purple) !important;
-    fill: var(--mfp-purple) !important;
+/* Botão de mostrar senha */
+section[data-testid="stSidebar"] button {
+    background: transparent !important;
+    color: var(--purple) !important;
 }
 
-/* Inputs e seletores */
+/* =======================================================
+   LABELS
+   ======================================================= */
+
+[data-testid="stWidgetLabel"] p {
+    color: var(--purple-dark) !important;
+    font-weight: 700 !important;
+}
+
+/* =======================================================
+   CAMPOS DE TEXTO E SELEÇÃO
+   ======================================================= */
 
 div[data-baseweb="input"] > div,
 div[data-baseweb="select"] > div,
 div[data-baseweb="textarea"] > div {
-    background-color: var(--mfp-white) !important;
-    color: var(--mfp-text) !important;
+    background: var(--white) !important;
+    color: var(--text) !important;
 
-    border: 1px solid var(--mfp-border) !important;
+    border: 1px solid var(--border) !important;
     border-radius: 12px !important;
+
     box-shadow: none !important;
 }
 
-input,
-textarea,
-div[data-baseweb="select"] span {
-    color: var(--mfp-text) !important;
+/* Corrige especificamente o campo da pergunta escuro */
+[data-testid="stTextInput"] input,
+[data-testid="stTextArea"] textarea,
+div[data-baseweb="input"] input {
+    background: var(--white) !important;
+    color: var(--text) !important;
+    -webkit-text-fill-color: var(--text) !important;
+
+    border: none !important;
+    caret-color: var(--purple) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #A78FAB !important;
+    opacity: 1 !important;
 }
 
 div[data-baseweb="input"] > div:focus-within,
 div[data-baseweb="select"] > div:focus-within,
 div[data-baseweb="textarea"] > div:focus-within {
-    border-color: var(--mfp-purple) !important;
-    box-shadow: 0 0 0 3px rgba(155, 32, 199, 0.10) !important;
+    border-color: var(--purple) !important;
+
+    box-shadow:
+        0 0 0 3px rgba(163, 44, 196, 0.12) !important;
 }
 
-/* Menu de seleção */
+/* Select */
+div[data-baseweb="select"] span,
+div[data-baseweb="select"] div {
+    color: var(--text) !important;
+}
 
 ul[role="listbox"],
 li[role="option"] {
-    background-color: var(--mfp-white) !important;
-    color: var(--mfp-text) !important;
+    background: var(--white) !important;
+    color: var(--text) !important;
 }
 
 li[role="option"]:hover {
-    background-color: var(--mfp-pink-light) !important;
+    background: var(--pink-light) !important;
 }
 
-/* Upload */
+/* =======================================================
+   RÁDIO
+   ======================================================= */
+
+div[role="radiogroup"] {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.5rem;
+
+    padding: 1rem 1.1rem !important;
+
+    background: var(--lilac) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 15px !important;
+}
+
+div[role="radiogroup"] label,
+div[role="radiogroup"] p,
+div[role="radiogroup"] span {
+    color: var(--text) !important;
+}
+
+div[role="radiogroup"] svg {
+    color: var(--purple) !important;
+    fill: var(--purple) !important;
+}
+
+/* =======================================================
+   BOTÕES
+   ======================================================= */
+
+div.stButton > button {
+    min-height: 44px;
+    padding: 0.65rem 1.35rem !important;
+
+    background: var(--purple) !important;
+    color: var(--white) !important;
+    -webkit-text-fill-color: var(--white) !important;
+
+    border: 1px solid var(--purple) !important;
+    border-radius: 12px !important;
+
+    font-weight: 700 !important;
+    box-shadow: none !important;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.15s ease;
+}
+
+div.stButton > button p,
+div.stButton > button span {
+    color: var(--white) !important;
+    -webkit-text-fill-color: var(--white) !important;
+}
+
+div.stButton > button:hover {
+    background: var(--pink) !important;
+    border-color: var(--pink) !important;
+    transform: translateY(-1px);
+}
+
+div.stButton > button:disabled {
+    background: #F2E5F5 !important;
+    color: var(--muted) !important;
+    -webkit-text-fill-color: var(--muted) !important;
+
+    border-color: var(--border) !important;
+    transform: none !important;
+}
+
+/* =======================================================
+   UPLOAD
+   ======================================================= */
 
 [data-testid="stFileUploaderDropzone"] {
-    padding: 1rem !important;
+    padding: 1.2rem !important;
 
-    background-color: var(--mfp-lilac-light) !important;
-    border: 2px dashed var(--mfp-pink-medium) !important;
+    background: var(--lilac) !important;
+    border: 2px dashed var(--pink-medium) !important;
     border-radius: 16px !important;
 }
 
 [data-testid="stFileUploaderDropzone"]:hover {
-    background-color: var(--mfp-pink-light) !important;
-    border-color: var(--mfp-purple) !important;
+    background: var(--pink-light) !important;
+    border-color: var(--purple) !important;
 }
 
 [data-testid="stFileUploaderDropzone"] p,
 [data-testid="stFileUploaderDropzone"] span,
 [data-testid="stFileUploaderDropzoneInstructions"] {
-    color: var(--mfp-muted) !important;
+    color: var(--muted) !important;
 }
 
 [data-testid="stFileUploaderDropzone"] button {
-    min-height: 42px !important;
-
-    background-color: var(--mfp-purple) !important;
-    color: var(--mfp-white) !important;
+    background: var(--purple) !important;
+    color: var(--white) !important;
+    -webkit-text-fill-color: var(--white) !important;
 
     border: none !important;
-    border-radius: 11px !important;
-    font-weight: 700 !important;
+    border-radius: 10px !important;
 }
 
-/* Botões */
-
-div.stButton > button {
-    min-height: 44px;
-    padding: 0.65rem 1.3rem !important;
-
-    background-color: var(--mfp-purple) !important;
-    color: var(--mfp-white) !important;
-
-    border: 1px solid var(--mfp-purple) !important;
-    border-radius: 12px !important;
-    font-weight: 700 !important;
-    box-shadow: none !important;
-}
-
-div.stButton > button:hover {
-    background-color: var(--mfp-pink) !important;
-    color: var(--mfp-white) !important;
-    border-color: var(--mfp-pink) !important;
-}
-
-div.stButton > button:disabled {
-    background-color: var(--mfp-pink-light) !important;
-    color: var(--mfp-muted) !important;
-    border-color: var(--mfp-border) !important;
-}
-
-/* Métricas */
+/* =======================================================
+   MÉTRICAS
+   ======================================================= */
 
 div[data-testid="stMetric"] {
     padding: 1rem 1.15rem !important;
 
-    background-color: var(--mfp-lilac-light) !important;
-    border: 1px solid var(--mfp-border) !important;
-    border-top: 4px solid var(--mfp-purple) !important;
+    background: var(--lilac) !important;
+
+    border: 1px solid var(--border) !important;
+    border-top: 4px solid var(--purple) !important;
     border-radius: 14px !important;
+
     box-shadow: none !important;
 }
 
 div[data-testid="stMetricLabel"] p {
-    color: var(--mfp-muted) !important;
+    color: var(--muted) !important;
     font-weight: 600 !important;
 }
 
 div[data-testid="stMetricValue"] {
-    color: var(--mfp-purple-dark) !important;
+    color: var(--purple-dark) !important;
 }
 
-/* Alertas */
+/* =======================================================
+   ALERTAS
+   Remove definitivamente verde, marrom e preto
+   ======================================================= */
 
-div[data-testid="stAlert"] {
-    background-color: var(--mfp-pink-light) !important;
-    color: var(--mfp-purple-dark) !important;
+div[data-testid="stAlert"],
+div[data-testid="stAlert"][data-baseweb="notification"] {
+    background: var(--pink-light) !important;
+    color: var(--purple-dark) !important;
 
-    border: 1px solid var(--mfp-pink-medium) !important;
-    border-left: 5px solid var(--mfp-pink) !important;
+    border: 1px solid var(--pink-medium) !important;
+    border-left: 5px solid var(--pink) !important;
     border-radius: 12px !important;
+
     box-shadow: none !important;
+}
+
+div[data-testid="stAlert"] > div {
+    background: transparent !important;
 }
 
 div[data-testid="stAlert"] p,
 div[data-testid="stAlert"] span,
 div[data-testid="stAlert"] div {
-    color: var(--mfp-purple-dark) !important;
+    color: var(--purple-dark) !important;
+    -webkit-text-fill-color: var(--purple-dark) !important;
 }
 
-/* Fontes recuperadas */
+div[data-testid="stAlert"] svg {
+    color: var(--purple) !important;
+    fill: var(--purple) !important;
+}
+
+/* Sucesso também fica rosa/lilás */
+div[data-testid="stNotificationContentSuccess"],
+div[data-baseweb="notification"] {
+    background: var(--pink-light) !important;
+    color: var(--purple-dark) !important;
+}
+
+/* =======================================================
+   EXPANSORES DAS FONTES
+   ======================================================= */
 
 details {
-    background-color: var(--mfp-lilac-light) !important;
+    background: var(--lilac) !important;
 
-    border: 1px solid var(--mfp-border) !important;
-    border-left: 4px solid var(--mfp-pink) !important;
+    border: 1px solid var(--border) !important;
+    border-left: 4px solid var(--pink) !important;
     border-radius: 12px !important;
+
+    box-shadow: none !important;
+}
+
+details summary {
+    background: transparent !important;
 }
 
 details summary,
-details summary span,
-details summary p {
-    color: var(--mfp-purple-dark) !important;
+details summary p,
+details summary span {
+    color: var(--purple-dark) !important;
     font-weight: 700 !important;
 }
 
-/* Responsividade */
+details div,
+details p {
+    color: var(--text) !important;
+}
+
+/* =======================================================
+   SPINNER E DIVISOR
+   ======================================================= */
+
+[data-testid="stSpinner"] *,
+[data-testid="stStatusWidget"] * {
+    color: var(--purple) !important;
+}
+
+hr {
+    border-color: var(--border) !important;
+}
+
+/* Aviso personalizado da API */
+.mfp-api-warning {
+    margin: 16px 0;
+    padding: 16px 18px;
+
+    background: var(--pink-light);
+    color: var(--purple-dark);
+
+    border: 1px solid var(--pink-medium);
+    border-left: 5px solid var(--pink);
+    border-radius: 12px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+
+/* =======================================================
+   RESPONSIVIDADE
+   ======================================================= */
 
 @media (max-width: 700px) {
     .block-container {
@@ -314,17 +472,30 @@ details summary p {
     }
 }
 
-.mfp-api-warning {
-    margin: 16px 0;
-    padding: 16px 18px;
 
-    background-color: #FCE7EF;
-    color: #541064;
 
-    border: 1px solid #F29AB5;
-    border-left: 5px solid #E85D88;
-    border-radius: 12px;
+/* Título principal em roxo */
+body .stApp [data-testid="stMain"] h1,
+body .stApp [data-testid="stMain"] h1 span,
+body .stApp [data-testid="stMain"] h1 a,
+body .stApp [data-testid="stMain"] h1 * {
+    color: #862091 !important;
+    -webkit-text-fill-color: #862091 !important;
+}
 
-    font-family: Helvetica, Arial, sans-serif;
-    font-weight: 600;
+/* Subtítulos em roxo */
+body .stApp [data-testid="stMain"] h2,
+body .stApp [data-testid="stMain"] h2 span,
+body .stApp [data-testid="stMain"] h2 a,
+body .stApp [data-testid="stMain"] h2 * {
+    color: #862091 !important;
+    -webkit-text-fill-color: #862091 !important;
+}
+
+/* Evita que o emoji do título seja cortado */
+.stApp h1 {
+    line-height: 1.35 !important;
+    padding-top: 0.12em !important;
+    padding-bottom: 0.12em !important;
+    overflow: visible !important;
 }

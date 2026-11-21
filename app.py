@@ -39,7 +39,7 @@ def show_api_key_warning() -> None:
     st.markdown(
         """
         <div class="mfp-api-warning">
-            🦜 Informe uma Cohere API Key na barra lateral
+            Informe uma Cohere API Key na barra lateral
             para utilizar a aplicação.
         </div>
         """,
@@ -54,7 +54,7 @@ def show_api_key_warning() -> None:
 
 st.set_page_config(
     page_title="MFP Knowledge Agent",
-    page_icon="🦜",
+    page_icon="⭐",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -85,7 +85,7 @@ st.caption(
 # =========================================================
 
 
-st.sidebar.header("🦜 Configuração da IA")
+st.sidebar.header("Configuração da IA")
 
 st.sidebar.caption(
     "Informe uma Trial API Key da Cohere para utilizar o agente."
