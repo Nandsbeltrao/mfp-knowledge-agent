@@ -6,6 +6,22 @@ O projeto utiliza **Retrieval-Augmented Generation (RAG)** para permitir que pes
 
 > **Status:** MVP funcional, avaliado e documentado.
 
+## Demonstração
+
+### Tela inicial
+
+![Tela inicial do MFP Knowledge Agent](assets/Images/01-home.png)
+
+### Documento processado
+
+![Documento processado e indexado](assets/Images/02-document-processed.png)
+
+### Resposta fundamentada
+
+![Resposta com indicação das fontes](assets/Images/03-grounded-answer.png)
+
+###
+
 ---
 
 ## Sobre o projeto
