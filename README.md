@@ -26,6 +26,14 @@ assets/Images/03-grounded-answer.png
 
 assets/Images/04-insufficient-information.png
 
+## Aplicação publicada
+
+Acesse a demonstração:
+
+**[Abrir o MFP Knowledge Agent](https://mfp-knowledge-agent.onrender.com)**
+
+> O serviço utiliza uma instância gratuita e pode levar aproximadamente um minuto para iniciar após um período sem acessos.
+
 ---
 
 ## Problema de negócio
@@ -350,11 +358,8 @@ O teste verifica o processamento de PDF e DOCX em objetos equivalentes aos arqui
 - [x] Arquitetura.
 - [x] Prompts.
 - [x] Decisões técnicas.
-
-### Pendente
-
-- [ ] Publicação em ambiente externo.
-- [ ] Validação do upload fora do proxy do Codespaces.
+- [x] Publicação em ambiente externo.
+- [x] Validação do upload fora do proxy do Codespaces.
 
 ---
 
