@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "category": "respondível",
+    "question": "Qual é o objetivo da Maratona Feminina de Programação?",
+    "expected_behavior": "Responder com base no documento e indicar a fonte."
+  },
+  {
+    "id": 2,
+    "category": "respondível",
+    "question": "Quais são as responsabilidades do Departamento de Comunicação?",
+    "expected_behavior": "Mencionar redes sociais, divulgação de eventos, conteúdo institucional, relacionamento com a comunidade e calendário editorial."
+  },
+  {
+    "id": 3,
+    "category": "respondível",
+    "question": "Quais atividades são realizadas pelo Departamento de Tecnologia?",
+    "expected_behavior": "Mencionar ferramentas digitais, automações internas e soluções para inscrições, eventos e organização de informações."
+  },
+  {
+    "id": 4,
+    "category": "respondível",
+    "question": "Como funciona a integração de novas integrantes?",
+    "expected_behavior": "Explicar reunião de boas-vindas, acesso aos canais, consulta aos materiais e acompanhamento inicial."
+  },
+  {
+    "id": 5,
+    "category": "respondível",
+    "question": "Quais cuidados devem ser adotados com os dados utilizados em testes?",
+    "expected_behavior": "Informar que os dados devem ser fictícios, anonimizados ou autorizados."
+  },
+  {
+    "id": 6,
+    "category": "parcialmente respondível",
+    "question": "Quem é responsável por acompanhar cada nova integrante?",
+    "expected_behavior": "Informar apenas que existe uma pessoa de referência, sem inventar nome ou cargo."
+  },
+  {
+    "id": 7,
+    "category": "parcialmente respondível",
+    "question": "Qual ferramenta é utilizada para organizar as tarefas dos eventos?",
+    "expected_behavior": "Explicar que deve existir uma lista de tarefas, mas que a ferramenta não foi especificada."
+  },
+  {
+    "id": 8,
+    "category": "não respondível",
+    "question": "Qual é o orçamento anual da organização?",
+    "expected_behavior": "Informar que não existem informações suficientes no documento."
+  },
+  {
+    "id": 9,
+    "category": "não respondível",
+    "question": "Quem ocupa atualmente a presidência da organização?",
+    "expected_behavior": "Informar que não existem informações suficientes no documento."
+  },
+  {
+    "id": 10,
+    "category": "não respondível",
+    "question": "Em que endereço físico está localizada a sede da organização?",
+    "expected_behavior": "Informar que não existem informações suficientes no documento."
+  }
+]

@@ -1,0 +1,94 @@
+{
+  "evaluation_date": "2026-11-21",
+  "document": "mfp_guia_institucional.docx",
+  "model_provider": "Cohere",
+  "evaluation_method": "Avaliação manual baseada na resposta gerada e nos trechos recuperados como fonte.",
+  "summary": {
+    "total_tests": 10,
+    "approved_after_final_adjustment": 10,
+    "hallucinations_detected": 0,
+    "answerable_questions": 5,
+    "partially_answerable_questions": 2,
+    "unanswerable_questions": 3
+  },
+  "results": [
+    {
+      "id": 1,
+      "category": "respondível",
+      "question": "Qual é o objetivo da Maratona Feminina de Programação?",
+      "result": "aprovado",
+      "observation": "A resposta apresentou o objetivo descrito no documento e indicou a fonte utilizada."
+    },
+    {
+      "id": 2,
+      "category": "respondível",
+      "question": "Quais são as responsabilidades do Departamento de Comunicação?",
+      "result": "aprovado",
+      "observation": "A resposta mencionou redes sociais, divulgação de eventos, conteúdo institucional, relacionamento com a comunidade, calendário editorial e comunicação entre áreas."
+    },
+    {
+      "id": 3,
+      "category": "respondível",
+      "question": "Quais atividades são realizadas pelo Departamento de Tecnologia?",
+      "result": "aprovado",
+      "observation": "A resposta mencionou ferramentas digitais, automações internas e soluções para inscrições, eventos e organização de informações."
+    },
+    {
+      "id": 4,
+      "category": "respondível",
+      "question": "Como funciona a integração de novas integrantes?",
+      "result": "aprovado",
+      "observation": "A resposta explicou a reunião de boas-vindas, o acesso aos canais, a consulta aos materiais, as responsabilidades da função e o acompanhamento inicial."
+    },
+    {
+      "id": 5,
+      "category": "respondível",
+      "question": "Quais cuidados devem ser adotados com os dados utilizados em testes?",
+      "result": "aprovado",
+      "observation": "A resposta informou que os dados devem ser fictícios, anonimizados ou autorizados e alertou sobre a publicação de informações pessoais e documentos internos."
+    },
+    {
+      "id": 6,
+      "category": "parcialmente respondível",
+      "question": "Quem é responsável por acompanhar cada nova integrante?",
+      "result": "aprovado",
+      "observation": "A resposta informou apenas que existe uma pessoa de referência durante os primeiros trinta dias, sem inventar nome, cargo ou departamento."
+    },
+    {
+      "id": 7,
+      "category": "parcialmente respondível",
+      "question": "Qual ferramenta é utilizada para organizar as tarefas dos eventos?",
+      "initial_result": "parcialmente aprovado",
+      "final_result": "aprovado",
+      "observation": "Inicialmente, o agente recusou completamente a pergunta. Após o ajuste do prompt, passou a informar que o documento exige uma lista de tarefas, mas não especifica a ferramenta utilizada."
+    },
+    {
+      "id": 8,
+      "category": "não respondível",
+      "question": "Qual é o orçamento anual da organização?",
+      "result": "aprovado",
+      "observation": "O agente informou corretamente que não encontrou informações suficientes e não inventou valores."
+    },
+    {
+      "id": 9,
+      "category": "não respondível",
+      "question": "Quem ocupa atualmente a presidência da organização?",
+      "result": "aprovado",
+      "observation": "O agente recusou corretamente e não inventou nomes ou utilizou conhecimento externo."
+    },
+    {
+      "id": 10,
+      "category": "não respondível",
+      "question": "Em que endereço físico está localizada a sede da organização?",
+      "result": "aprovado",
+      "observation": "O agente recusou corretamente e não inventou cidade, endereço ou existência de sede física."
+    }
+  ],
+  "known_limitations": [
+    "A avaliação utilizou um documento fictício e um conjunto pequeno de perguntas.",
+    "A análise foi manual e não representa uma métrica estatística de precisão.",
+    "A qualidade da recuperação pode variar conforme o tamanho, a estrutura e a clareza dos documentos.",
+    "A paginação de arquivos DOCX não é preservada porque depende do programa e da configuração de renderização.",
+    "O upload pelo navegador não pôde ser validado visualmente no GitHub Codespaces devido ao proxy do ambiente, mas o processamento de objetos equivalentes ao upload foi validado por teste automatizado."
+  ]
+}

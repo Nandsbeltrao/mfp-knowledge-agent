@@ -222,3 +222,6 @@ __marimo__/
 # Arquivos locais de teste
 data/sample/*.pdf
 data/sample/*.docx
+
+# Banco vetorial local
+chroma_db/
